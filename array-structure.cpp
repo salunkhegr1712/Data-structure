@@ -36,7 +36,7 @@ int main()
     card *new1 = (card *)malloc(sizeof(card));
     // dynamically allocate the memory with the help of the malloc in cpp with the help of new keyword
     // datatype *variable_name=new datatype(sizeof(datatype)) syntax for new in the c++
-    card *hell = new card[sizeof(card)];
+    card *hell = new card;
     card *h1;
     // hell->facevalue=10;
     // hell->colour=0;
