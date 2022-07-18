@@ -44,7 +44,14 @@ public:
     {
         cout << "perimeter is : " << 2 * length + 2 * bredth << endl;
     }
+    // lets initialise function inside the class and declare it out class 
+    void hell();
 };
+
+// :: is the scope resolution operator  
+void rectangle ::hell(void){
+    cout<<"this is how you can initialise the function inside and write the \nfunction outside of the class"<<endl;
+}
 
 // now lets do th same with struct 
 
@@ -90,5 +97,7 @@ int main()
     aa.area();
     aa.perimeter();
     // note we can fetch the function throught object but we cannot directly use the private values outside class
+
+    a.hell();
     return 0;
 }
