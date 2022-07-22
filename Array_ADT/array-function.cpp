@@ -5,14 +5,14 @@ struct array
 {
     int*a;
     int size;
+    int length;
 };
 
 
-// void initilialise(struct array*ptr,int size){
+void initilialise(struct array*ptr,int size){
 
-//     ptr=(array*)malloc(sizeof(array));
-//     ptr->a=(int*)malloc(sizeof(int)*size);
-// }
+    ptr->a=(int*)malloc(sizeof(int)*size);
+}
 
 void display(struct array*ptr){\
     printf("\n");
