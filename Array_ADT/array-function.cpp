@@ -184,6 +184,14 @@ struct array
         return sum/size;
     }
 
+    int sum()
+    {
+        int sum=0;
+        for(int i=0;i<size;i++){
+            sum=sum+a[i];
+        }
+        return sum;
+    }
 };
 
 // sorting amd searching algos
@@ -227,4 +235,39 @@ void binary_search(int *a, int size, int val)
         }
     }
     printf("\nelement is not there in array");
+}
+
+
+void isSorted(int*a,int size){
+    for (int i = 0; i < size -1; i++)
+    {   
+        if (a[i]>a[i+1])
+        {
+            cout<<"\narray is not sorted!!"<<endl;
+            return;
+        }
+        
+    }
+    cout<<"\narray is sorted"<<endl;
+    
+}
+
+int* merge(array a1,array a2){
+
+    int z=a1.size + a2.size;
+
+    int*mergeArray=new int[z];
+    int i=0,j=0;
+    for(i ; i < a1.size; i++)
+    {
+        mergeArray[i]=a1.a[i];
+   
+    }
+
+    for (i;i<z;i++){
+        mergeArray[i]=a2.a[j];
+        j=j+1;
+    }
+    return mergeArray;
+    
 }

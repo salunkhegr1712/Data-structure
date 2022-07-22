@@ -18,6 +18,7 @@ int main()
     for (int i = 0; i < ptr.size; i++)
     {
         ptr.a[i]=aa;
+
         aa=aa+10;
         
     }
@@ -42,9 +43,30 @@ int main()
     // rotate(&ptr,'l',4);
     // display(&ptr);
     // linear_search(&ptr,100);
-    int arr[]={10,20,30,40,50,60,70};
-    binary_search(arr,7,50);
-    printf("\naverage is : %d",ptr.average());
+    int arr[]={10,20,30,10,50,60,70};
+    // binary_search(arr,7,50);
+    // printf("\naverage is : %d",ptr.average());
+    // isSorted(ptr.a,ptr.size);
+    // isSorted(arr,7);
+    array ptr1;
+    aa=15;
+    ptr1.initilialise(15);
+    ptr1.size=7;
+      for (int i = 0; i < ptr1.size; i++)
+    {
+        ptr1.a[i]=aa;
+
+        aa=aa+10;
+        
+    }
+    cout<<endl;
+    ptr1.display();
+    cout<<endl;
+
+    int*merge1=merge(ptr,ptr1);
+    for(int kk=0;kk< ptr.size+ptr1.size ;kk++){
+        cout << "element at position " << kk << " is : " << merge1[kk] << endl;
+    }
     delete(&ptr);
     return 0;
 }
