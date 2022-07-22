@@ -1,19 +1,22 @@
+//importing basic libraries
 #include<iostream>
 #include<stdio.h>
 using namespace std;
+// creating the structure with size or length
 struct array
 {
     int*a;
     int size;
     int length;
 };
-
+// a funnction to initulise dynamic array with  malloc
 
 void initilialise(struct array*ptr,int size){
 
     ptr->a=(int*)malloc(sizeof(int)*size);
 }
 
+// display the array with reference to the position of elements of array
 void display(struct array*ptr){\
     printf("\n");
     
@@ -25,6 +28,7 @@ void display(struct array*ptr){\
 
 }
 
+// assigning value to the index with set index function having parameters like value and index
 void setindex(array*ptr,int val,int index){
     if (index> ptr->size)
     {
@@ -34,6 +38,8 @@ void setindex(array*ptr,int val,int index){
     
     ptr->a[index]=val;
 }
+
+// function to delete the the array and shift the remaining element 
 
 void dlt(array*ptr,int val){
 
@@ -54,6 +60,7 @@ void dlt(array*ptr,int val){
 
 }
 
+// get index of the value from array 
 int getindex(array*ptr,int val){
     int i=0;
     for(i;i<ptr->size;i++){
@@ -69,6 +76,7 @@ int getindex(array*ptr,int val){
     return i;
 }
 
+// function to find max in array 
 int max(array*ptr){
     int maximum;
     maximum=ptr->a[0];
@@ -84,6 +92,7 @@ int max(array*ptr){
     
 }
 
+// function to find mininum elements in array
 int min(array*ptr){
     int minimum;
     minimum=ptr->a[0];
@@ -98,18 +107,21 @@ int min(array*ptr){
     return minimum;
 }
 
+// swpping the two value with memory referncing 
 void swap(int*a,int*b){
     int temp=*a;
     *a=*b;
     *b=temp;
 }
 
+// reverse the array
 void reverse(array*ptr){
     for(int i=0;i< ptr->size/2;i++){
         swap(ptr->a[i],ptr->a[ptr->size-i-1]);
     }
 }
 
+// rotate the array to left
 void rotateleft(array*ptr){
     int aa=ptr->a[0];
     
@@ -121,6 +133,7 @@ void rotateleft(array*ptr){
     ptr->a[ptr->size-1]=aa;
 }
 
+// rotate the array towards right
 void rotateright(array*ptr){
     int aa=ptr->a[ptr->size-1];
     
@@ -132,6 +145,7 @@ void rotateright(array*ptr){
     ptr->a[0]=aa;
 }
 
+// rotate the array with the number of iterations 
 void rotate(array*ptr,char c,int times){
     if (c =='l')
     {
@@ -149,24 +163,4 @@ void rotate(array*ptr,char c,int times){
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

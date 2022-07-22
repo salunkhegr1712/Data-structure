@@ -3,11 +3,14 @@
 #include "array-function.cpp"
 using namespace std;
 
+// main function 
 int main()
 {
     // int size = 10;
+    // create pointer 
     array ptr ;
     ptr.size=10;
+    // call function
     initilialise(&ptr,ptr.size);
     int aa=10;
     printf("\n");
