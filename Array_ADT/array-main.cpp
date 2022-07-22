@@ -67,6 +67,8 @@ int main()
     for(int kk=0;kk< ptr.size+ptr1.size ;kk++){
         cout << "element at position " << kk << " is : " << merge1[kk] << endl;
     }
+    printf("\n%d",unsortedElements(arr,7));
     delete(&ptr);
+
     return 0;
 }

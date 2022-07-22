@@ -271,3 +271,19 @@ int* merge(array a1,array a2){
     return mergeArray;
     
 }
+int unsortedElements(int*a,int size){
+    int j=0;
+    for (int i = 0; i < size-1; i++)
+    {
+        if (a[i]>a[i+1])
+        {
+            /* code */
+            printf("%d %d",a[i],a[i+1]);
+            j=j+1;
+        }
+        
+    }
+
+    return j;
+    
+}
