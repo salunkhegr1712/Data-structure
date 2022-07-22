@@ -1,166 +1,230 @@
-//importing basic libraries
-#include<iostream>
-#include<stdio.h>
+// importing basic libraries
+#include <iostream>
+#include <stdio.h>
 using namespace std;
 // creating the structure with size or length
 struct array
 {
-    int*a;
+    int *a;
     int size;
     int length;
+
+    // a funnction to initulise dynamic array with  malloc
+
+    void initilialise(int size)
+    {
+
+        a = (int *)malloc(sizeof(int) * size);
+    }
+
+    // display the array with reference to the position of elements of array
+    void display()
+    {
+        printf("\n");
+
+        for (int i = 0; i < size; i++)
+        {
+            cout << "element at position " << i << " is : " << a[i] << endl;
+            /* code */
+        }
+    }
+    void addOrAppned(int val)
+    {
+    }
+
+    // assigning value to the index with set index function having parameters like value and index
+    void setindex(int val, int index)
+    {
+        if (index > size)
+        {
+            cout << "error";
+            return;
+        }
+
+        a[index] = val;
+        length++;
+    }
+
+    // function to delete the the array and shift the remaining element
+
+    void dlt(int val)
+    {
+
+        int i = 0;
+        for (i; i < size; i++)
+        {
+            if (a[i] == val)
+            {
+                a[i] = 0;
+                break;
+            }
+        }
+        size = size - 1;
+
+        for (int j = i; j < size - 1; j++)
+        {
+            a[j] = a[j + 1];
+        }
+    }
+
+    // get index of the value from array
+    int getindex(int val)
+    {
+        int i = 0;
+        for (i; i < size; i++)
+        {
+            if (a[i] == val)
+            {
+                break;
+            }
+        }
+        if (i == size)
+        {
+            return -1;
+        }
+        return i;
+    }
+
+    // function to find max in array
+    int max()
+    {
+        int maximum;
+        maximum = a[0];
+        for (int i = 0; i < size; i++)
+        {
+            if (maximum <= a[i])
+            {
+                maximum = a[i];
+            }
+        }
+        return maximum;
+    }
+
+    // function to find mininum elements in array
+    int min()
+    {
+        int minimum;
+        minimum = a[0];
+        for (int i = 0; i < size; i++)
+        {
+            if (minimum >= a[i])
+            {
+                minimum = a[i];
+            }
+        }
+        return minimum;
+    }
+
+    // swpping the two value with memory referncing
+    void swap(int *a, int *b)
+    {
+        int temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+
+    // reverse the array
+    void reverse()
+    {
+        for (int i = 0; i < size / 2; i++)
+        {
+            swap(&a[i], &a[size - i - 1]);
+        }
+    }
+
+    // rotate the array to left
+    void rotateleft()
+    {
+        int aa = a[0];
+
+        for (int i = 0; i < size - 1; i++)
+        {
+            a[i] = a[i + 1];
+        }
+        a[size - 1] = aa;
+    }
+
+    // rotate the array towards right
+    void rotateright()
+    {
+        int aa = a[size - 1];
+
+        for (int i = size - 1; i > 0; i--)
+        {
+            a[i] = a[i - 1];
+        }
+        a[0] = aa;
+    }
+
+    // rotate the array with the number of iterations
+    void rotate(char c, int times)
+    {
+        if (c == 'l')
+        {
+            for (int i = 0; i < times; i++)
+            {
+                rotateleft();
+            }
+        }
+        else
+        {
+            for (int i = 0; i < times; i++)
+            {
+                rotateright();
+            }
+        }
+    }
+
+    int average()
+    {
+        int sum=0;
+        for(int i=0;i<size;i++){
+            sum=sum+a[i];
+        }
+        return sum/size;
+    }
+
 };
-// a funnction to initulise dynamic array with  malloc
 
-void initilialise(struct array*ptr,int size){
+// sorting amd searching algos
 
-    ptr->a=(int*)malloc(sizeof(int)*size);
-}
-
-// display the array with reference to the position of elements of array
-void display(struct array*ptr){\
-    printf("\n");
-    
-    for (int i = 0; i < ptr->size; i++)
-    {   
-        cout<<"element at position "<<i <<" is : "<<ptr->a[i]<<endl;
-        /* code */
-    }
-
-}
-
-// assigning value to the index with set index function having parameters like value and index
-void setindex(array*ptr,int val,int index){
-    if (index> ptr->size)
-    {
-        cout<<"error";
-        return;
-    }
-    
-    ptr->a[index]=val;
-}
-
-// function to delete the the array and shift the remaining element 
-
-void dlt(array*ptr,int val){
-
-    int i=0;
-    for (i; i < ptr->size; i++)
-    {
-        if(ptr->a[i]==val){
-            ptr->a[i]=0;
-            break;
-        }
-    }
-    ptr->size=ptr->size -1;
-
-    for (int j = i; j < ptr->size -1; j++)
-    {
-        ptr->a[j]=ptr->a[j+1];
-    }
-
-}
-
-// get index of the value from array 
-int getindex(array*ptr,int val){
-    int i=0;
-    for(i;i<ptr->size;i++){
-        if (ptr->a[i]==val)
-        {
-            break;
-        }
-        
-    }
-    if(i==ptr->size){
-        return -1;
-    }
-    return i;
-}
-
-// function to find max in array 
-int max(array*ptr){
-    int maximum;
-    maximum=ptr->a[0];
+void linear_search(array *ptr, int val)
+{
     for (int i = 0; i < ptr->size; i++)
     {
-        if (maximum <=ptr->a[i])
+        if (ptr->a[i] == val)
         {
-            maximum=ptr->a[i];
-        }
-        
-    }
-    return maximum;
-    
-}
-
-// function to find mininum elements in array
-int min(array*ptr){
-    int minimum;
-    minimum=ptr->a[0];
-    for (int i = 0; i < ptr->size; i++)
-    {
-        if (minimum >=ptr->a[i])
-        {
-            minimum=ptr->a[i];
-        }
-        
-    }
-    return minimum;
-}
-
-// swpping the two value with memory referncing 
-void swap(int*a,int*b){
-    int temp=*a;
-    *a=*b;
-    *b=temp;
-}
-
-// reverse the array
-void reverse(array*ptr){
-    for(int i=0;i< ptr->size/2;i++){
-        swap(ptr->a[i],ptr->a[ptr->size-i-1]);
-    }
-}
-
-// rotate the array to left
-void rotateleft(array*ptr){
-    int aa=ptr->a[0];
-    
-
-    for (int i = 0; i < ptr->size-1; i++)
-    {
-        ptr->a[i]=ptr->a[i+1];
-    }
-    ptr->a[ptr->size-1]=aa;
-}
-
-// rotate the array towards right
-void rotateright(array*ptr){
-    int aa=ptr->a[ptr->size-1];
-    
-
-    for (int i = ptr->size -1; i >0; i--)
-    {
-        ptr->a[i]=ptr->a[i-1];
-    }
-    ptr->a[0]=aa;
-}
-
-// rotate the array with the number of iterations 
-void rotate(array*ptr,char c,int times){
-    if (c =='l')
-    {
-        for (int i = 0; i < times; i++)
-        {
-            rotateleft(ptr);
-        }
-    
-    }
-    else{
-        for (int i = 0; i < times; i++)
-        {
-            rotateright(ptr);
+            cout << "element found and it is at index " << i << endl;
+            return;
         }
     }
-    
+    cout << "Element not found" << endl;
 }
 
+// binary search is applicable only for the  sorted array
+void binary_search(int *a, int size, int val)
+{
+
+    int start = 0;
+    int end = size - 1;
+
+    while (start != end)
+    {
+        int mid = (start + end) / 2;
+        if (a[mid] == val)
+        {
+            printf("\nValue found succesfulley!\nindex is : %d", mid);
+            return;
+        }
+        else if (val > mid)
+        {
+            /* code */
+            start = mid;
+        }
+        else
+        {
+            end = mid;
+        }
+    }
+    printf("\nelement is not there in array");
+}
