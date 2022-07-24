@@ -158,6 +158,24 @@ struct node* insertAtStart(struct node *head, int value)
     return head;
 }
 
+int index(struct node*head,int val){
+    struct node*c=head;
+    int i=-1;
+    while (c!=NULL)
+    {
+        if (c->data == val)
+        {
+            return i;
+            /* code */
+        }
+        i=i+1;
+        c=c->next;
+        
+    }
+    return i;
+    
+}
+
 void isSorted(struct node*head){
     struct node*ptr=head;
     while (ptr->next!=NULL)
@@ -175,6 +193,81 @@ void isSorted(struct node*head){
     
 }
 
-void deleteNode(struct node*ptr,int val){
-    
+
+struct node*deleteHead(struct node*head){
+    struct node*ptr=head;
+    head=head->next;
+    delete(ptr);
+    return head;
 }
+
+void deleteLastNode(struct node*head){
+    struct node*ptr=head;
+    struct node*p;
+    while (ptr->next->next!=NULL)
+    {
+        ptr=ptr->next;
+    }
+    p=ptr->next;
+    ptr->next=NULL;
+    delete(p);
+
+}
+
+struct node* deleteNode(struct node*head,int val){
+    if (searchInList(head,val)==-1)
+    {
+        printf("Error Value not found !!\n");
+        return head;
+    }
+    
+    struct node*ptr=head;
+    int a=index(head,val);
+    int cnt=count(head);
+    if(a==0){
+        head=deleteHead(head);
+    }
+    else if (a==cnt-1)
+    {
+        deleteLastNode(head);
+    }
+
+    else{
+        // order q p ptr 
+        struct node*p=head;
+        struct node*q=head->next;
+        while (q!=NULL)
+        {
+            if (q->data==val)
+            {
+                p->next=q->next;
+                delete(q);
+                return head;
+            }
+            p=q;
+            q=q->next;
+        
+            
+        }
+        
+        
+    }
+    return head;
+
+}
+
+// struct node*sort(struct node*head){
+//     struct node*ptr=head;
+//     int a=minimumInList(head);
+//     deleteNode(head,a);
+//     int c=count(head);
+//     struct node* h=initialise(head,a);
+//     for (int i = 0; i < c -1; i++)
+//     {
+//         a=minimumInList(head);
+//         insert_end(h,a);
+//         head=deleteNode(head,a);
+//     }
+    
+//     return h;
+// }
