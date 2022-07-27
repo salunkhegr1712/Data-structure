@@ -145,18 +145,6 @@ int minimumInList(struct node *head)
     return min;
 }
 
-void insert_end(struct node *head, int val)
-{
-    struct node *ptr = head;
-
-    while (ptr->next != NULL)
-    {
-        /* code */
-        ptr = ptr->next;
-    }
-    struct node *n = initialise(n, val);
-    ptr->next = n;
-}
 
 void insertIndex(struct node *head, int value, int index)
 {
@@ -174,9 +162,13 @@ void insertIndex(struct node *head, int value, int index)
             ptr = ptr->next;
             i = i + 1;
         }
+
         struct node *n = initialise(n, value);
+        struct node*z=ptr->next;
         n->next = ptr->next;
+        z->prev=n;
         ptr->next = n;
+        n->prev=ptr;
     }
 }
 
@@ -184,12 +176,13 @@ struct node* insertAtStart(struct node *head, int value)
 {
     struct node *n = initialise(n, value);
     n->next = head;
+    head->prev=n;
     head = n ;
     return head;
 }
 
 
-int searchInList(struct node *head, int val)
+int search(struct node *head, int val)
 {
     struct node *ptr = head;
     while (ptr)
@@ -203,9 +196,23 @@ int searchInList(struct node *head, int val)
     return -1;
 }
 
+int search_reverse(struct node *last, int val)
+{
+    struct node *ptr = last;
+    while (ptr)
+    {
+        if (val == ptr->data)
+        {
+            return 1;
+        }
+        ptr = ptr->prev;
+    }
+    return -1;
+}
+
 int index(struct node*head,int val){
     struct node*c=head;
-    int i=-1;
+    int i=0;
     while (c!=NULL)
     {
         if (c->data == val)
@@ -242,7 +249,7 @@ void isSorted(struct node*head){
 struct node*deleteHead(struct node*head){
     struct node*ptr=head;
     head=head->next;
-    ptr->next->prev=head;
+    head->prev=NULL;
     delete(ptr);
     return head;
 }
@@ -261,7 +268,7 @@ void deleteLastNode(struct node*head){
 }
 
 struct node* deleteNode(struct node*head,int val){
-    if (searchInList(head,val)==-1)
+    if (search(head,val)==-1)
     {
         printf("Error Value not found !!\n");
         return head;
@@ -286,14 +293,15 @@ struct node* deleteNode(struct node*head,int val){
         {
             if (q->data==val)
             {
+                struct node*f=q->next;
+                f->prev=p;
                 p->next=q->next;
                 delete(q);
                 return head;
             }
             p=q;
             q=q->next;
-        
-            
+         
         }
         
         
@@ -301,7 +309,3 @@ struct node* deleteNode(struct node*head,int val){
     return head;
 
 }
-
-
-void push(){};
-void pop(){};
