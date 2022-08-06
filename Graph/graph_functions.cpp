@@ -2,44 +2,67 @@
 #include <stdio.h>
 using namespace std;
 
+// a function who will assign values to all elements in 2d array 
+void nullify(int*graph[],int v){
+    for(int i=0;i<v;i++){
+        int*a=graph[i];
+        for(int j=0;j<v;j++){
 
-struct node {
-    int key;
-    int*ptr;
-    node*down;
-};
-
-void initialise(struct node*p,int key,int vertices){
-    p->key=key;
-    int*arr=new int(vertices);
-    p->ptr=arr;
-    p->ptr++;
-    p->down=NULL;
-};
-
-struct node* insertVertices(struct node *p,int key,int vertices){
-    struct node*n1=p;
-    if (p->down==NULL)
-    {
-        /* code */
-        struct node*n2;
-        initialise(n2,key,vertices);
-        n1->down=n2;
-        printf("success\n");
-        
-    }
-    else{
-
-        while (n1->down!=NULL)
-        {
-            /* code */
-            n1=n1->down;
+            a[j]=-1;
         }
         
-        struct node*n2;
-        initialise(n2,key,vertices);
-        n1->down=n2;
     }
-    return p;
 }
 
+// a function to assign list to each graph block 
+void listCreator(int*graph[],int v){
+    for(int i=0;i<v;i++){
+        int*z=new int[v];
+        graph[i]=z;
+    }
+    nullify(graph,v);
+}
+
+// print graph  
+
+void printMatrix(int*graph[],int v){
+    for(int i=0;i<v;i++){
+        int*a=graph[i];
+        cout<<"vertex "<<i<<" => "; 
+        for(int j=0;j<v;j++){
+            if (a[j]>-1)
+            {
+                /* code */
+                cout<<a[j] << " ";
+            }
+            
+            
+        }
+        cout<<endl;
+    }
+}
+
+// adding a edge to graph 
+
+void addEdge(int*graph[],int x,int y,int v){
+    int*z=graph[x];
+    int*p=graph[y];
+    z[y]=y;
+    p[x]=x;
+    
+}
+
+// printing neighbour of perticular vertices 
+void printNeighbour(int*graph[],int x,int v){
+    int*a=graph[x];
+    for (int i = 0; i < v; i++)
+    {
+        if (a[i]>-1)
+        {
+            cout<<i <<"  ";
+        } 
+        
+    }
+    cout<<endl;
+    
+}

@@ -3,16 +3,23 @@
 #include "graph_functions.cpp"
 using namespace std;
 
-
 int main()
 {
-    int z=5;
-    node a;
-    node*head=&a;
-    initialise(head,0,4);
-    head=insertVertices(head,1,4);
-
-    cout<<endl<<a.key<<endl<<a.down->key<<endl;
-    head=insertVertices(head,2,4);
+    int v;
+    v=4;
+    // here we created a array of pointers 
+    int*graph[v];
+    listCreator(graph,v);
+    addEdge(graph,0,1,v);
+    addEdge(graph,0,2,v);
+    addEdge(graph,1,2,v);
+    addEdge(graph,1,0,v);
+    addEdge(graph,2,0,v);
+    addEdge(graph,2,1,v);
+    addEdge(graph,2,3,v);
+    addEdge(graph,3,2,v);
+    printMatrix(graph,v);
+    cout<<"neighbours of 2 are:"<<endl;
+    printNeighbour(graph,2,v);
     return 0;
 }
