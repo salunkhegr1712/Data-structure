@@ -2,7 +2,11 @@
 #include <stdio.h>
 using namespace std;
 int e=0;
-const int v=5;
+
+const int v=5 ;
+
+
+
 void addDEdge(int j[v][v],int x, int y){
     j[x-1][y-1]=1;
     e++;
@@ -58,6 +62,38 @@ void nullify(int jj[v][v]){
         
     }
 }
+int innerDegree(int j[v][v],int x){
+    int sum=0;
+    for (int i = 0; i < v; i++)
+    {
+        /* code */
+        if (j[i][x-1]>0)
+        {
+            /* code */
+            sum=sum+1;
+        }
+        
+
+    }
+    return sum;
+    
+}
+int outerDegree(int j[v][v],int x){
+    int sum=0;
+    for (int i = 0; i < v; i++)
+    {
+        /* code */
+        if (j[x-1][i]>0)
+        {
+            /* code */
+            sum=sum+1;
+        }
+        
+
+    }
+    return sum;
+    
+}
 int main()
 {
     int j[v][v];
@@ -69,13 +105,15 @@ int main()
     // addUEdge(j,4,3);
     // print(j);
     // cout<<e;
-    addWeightedUEdge(j,1,2,9);
-    addWeightedUEdge(j,2,3,5);
-    addWeightedUEdge(j,1,4,6);
-    addWeightedUEdge(j,1,3,4);
-    addWeightedUEdge(j,4,5,2);
-    addWeightedUEdge(j,5,3,7);
-    addWeightedUEdge(j,4,3,8);
+    addWeightedDEdge(j,1,2,9);
+    addWeightedDEdge(j,2,3,5);
+    addWeightedDEdge(j,1,4,6);
+    addWeightedDEdge(j,3,1,4);
+    addWeightedDEdge(j,4,5,2);
+    addWeightedDEdge(j,5,3,7);
+    addWeightedDEdge(j,4,3,8);
     print(j);
+    cout<<"inner degree of 3 is : "<<innerDegree(j,3)<<endl;
+    cout<<"outer degree of 3 is : "<<outerDegree(j,3)<<endl;
     return 0;
 }
