@@ -1,9 +1,12 @@
 #include<iostream>
 #include <stdio.h>
 using namespace std;
+struct gph{
+    int v;
+    int*graph[];
 
 // a function who will assign values to all elements in 2d array 
-void nullify(int*graph[],int v){
+void nullify(){
     for(int i=0;i<v;i++){
         int*a=graph[i];
         for(int j=0;j<v;j++){
@@ -15,17 +18,16 @@ void nullify(int*graph[],int v){
 }
 
 // a function to assign list to each graph block 
-void listCreator(int*graph[],int v){
+void listCreator(){
     for(int i=0;i<v;i++){
         int*z=new int[v];
         graph[i]=z;
     }
-    nullify(graph,v);
 }
 
 // print graph  
 
-void printMatrix(int*graph[],int v){
+void printMatrix(){
     for(int i=0;i<v;i++){
         int*a=graph[i];
         cout<<"vertex "<<i<<" => "; 
@@ -33,7 +35,7 @@ void printMatrix(int*graph[],int v){
             if (a[j]>-1)
             {
                 /* code */
-                cout<<a[j] << " ";
+                cout<<a[j] << ", ";
             }
             
             
@@ -44,7 +46,7 @@ void printMatrix(int*graph[],int v){
 
 // adding a edge to graph 
 
-void addEdge(int*graph[],int x,int y,int v){
+void addEdge(int x,int y){
     int*z=graph[x];
     int*p=graph[y];
     z[y]=y;
@@ -53,7 +55,7 @@ void addEdge(int*graph[],int x,int y,int v){
 }
 
 // printing neighbour of perticular vertices 
-void printNeighbour(int*graph[],int x,int v){
+void printNeighbour(int x){
     int*a=graph[x];
     for (int i = 0; i < v; i++)
     {
@@ -66,3 +68,6 @@ void printNeighbour(int*graph[],int x,int v){
     cout<<endl;
     
 }
+
+
+};

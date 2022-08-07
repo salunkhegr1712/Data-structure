@@ -6,20 +6,25 @@ using namespace std;
 int main()
 {
     int v;
-    v=4;
+    v=5;
+    gph graph;
+    graph.v=v;
     // here we created a array of pointers 
-    int*graph[v];
-    listCreator(graph,v);
-    addEdge(graph,0,1,v);
-    addEdge(graph,0,2,v);
-    addEdge(graph,1,2,v);
-    addEdge(graph,1,0,v);
-    addEdge(graph,2,0,v);
-    addEdge(graph,2,1,v);
-    addEdge(graph,2,3,v);
-    addEdge(graph,3,2,v);
-    printMatrix(graph,v);
+
+    graph.listCreator();
+    graph.nullify();
+    graph.addEdge(0,1);
+    graph.addEdge(0,2);
+    graph.addEdge(1,2);
+    graph.addEdge(1,0);
+    graph.addEdge(2,0);
+    graph.addEdge(2,1);
+    graph.addEdge(2,3);
+    graph.addEdge(3,2);
+    graph.addEdge(4,2);
+    graph.addEdge(4,1);
+    graph.printMatrix();
     cout<<"neighbours of 2 are:"<<endl;
-    printNeighbour(graph,2,v);
+    graph.printNeighbour(2);
     return 0;
 }
