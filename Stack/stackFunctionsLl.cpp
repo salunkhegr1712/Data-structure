@@ -71,9 +71,6 @@ int peek(node*ptr,int index){
         return ptr->value;
         
     }
-    
-    
-
 }
 
 int stackTop(node*p){
