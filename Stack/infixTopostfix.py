@@ -59,27 +59,41 @@ def infixToPostfix(cha):
     return d
 
 
+# it is a very easy and common way to make postfix_evalution
 def postfix_evalution(cha):
+    # create list which will acts like stack 
     l=[]
+    # answer to store answer for all iteration 
     answer=0
     print(cha)
+    # print input postfix equation which we created earlier 
     for i in range(len(cha)):
+        # runing loop and adding numeric value in stack 
+        # if we tackle operator like * / + -  just pop value and do operation 
+        # second pop will be first Element in operator as above operator has LR associtivity 
+        # and if operator is "^"  the first pop will be first Variable and it has RL associvity 
         if(cha[i].isnumeric()==True):
             l.append(cha[i])
             # print(l)
         elif(cha[i]=="+" or cha[i]=="-" or cha[i]=="/" or cha[i]=="*"):
+            # pop Element
             b=int(l.pop())
             a=int(l.pop())
+            # do calculations with help of  operator function 
             answer=ops[cha[i]](a,b)
             l.append(answer)
             # print(l)
         elif(cha[i]=="^"):
+            # pop Element 
             b=int(l.pop())
             a=int(l.pop())
+            # do calculations with help of  operator function 
             answer=ops[cha[i]](b,a)
+            # push back result in stack 
             l.append(answer)
             # print(l)
-    return answer
+    # pop and return answer 
+    return l.pop()
 
 
 def main():
@@ -94,7 +108,7 @@ main()
 
 # abcd^e-fgh*+^*+i-
 
-# algorithms
+# algorithms for infix to postfix conversion 
 
 # if character is alphabet direct add it in output string 
 
