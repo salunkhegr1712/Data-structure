@@ -27,7 +27,9 @@ def infixToPostfix(cha):
     l=[]
     # so as postfix expression gave answer in one scan so we will perform same algo 
     for i in range(len(cha)):
-        if(cha[i].isnumeric()==True):
+        if cha[i]==" ":
+            pass
+        elif(cha[i].isnumeric()==True):
             d=d+cha[i]
         elif(cha[i]=="("):
             l.append("(")
@@ -99,10 +101,12 @@ def postfix_evalution(cha):
 def main():
     # a="a+b*(c^d-e)^(f+g*h)-i"
     a="3*5+6/2-4"
-    print(postfix_evalution(infixToPostfix(a)))
+    print(postfix_evalution(infixToPostfix("8 2 3 ^ / 2 3* + 5 1*-")))
+    # print(infixToPostfix("1+(2 * 3) - (4^ (5^ 6))"))
     # print(infixToPostfix(a))
     # a=ops["+"](10,20)
     # print(a)
+    # print(postfix_evalution("234*+82/-"))
 
 main()
 
