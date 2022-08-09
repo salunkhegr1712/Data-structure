@@ -16,30 +16,27 @@ int main()
     // do operations on queue 
     queue ptr;
 
-    initialise(&ptr,10);
+    ptr.initialise(10);
     
     cout<<endl;
     cout<<"Front is :"<<ptr.front<<endl;
     cout<<"Rear is :"<<ptr.rear<<endl;
     cout<<"Size is :"<<ptr.size<<endl;
-    displayQueue(&ptr);
-    enqueue(&ptr,10);
-    enqueue(&ptr,20);
-    enqueue(&ptr,30);
-    enqueue(&ptr,40);
-    enqueue(&ptr,60);
-    enqueue(&ptr,70);
-    enqueue(&ptr,80);
-    enqueue(&ptr,90);
-    enqueue(&ptr,91);
-    enqueue(&ptr,92);
-    // enqueue(&ptr,93);
-    // cout<<"no of elements in queue is : "<<count(&ptr)<<endl;
-    // printf("element is deleted : %d\n",dequeue(&ptr));
-    // printf("element is deleted : %d\n",dequeue(&ptr));
-    // printf("element is deleted : %d\n",dequeue(&ptr));
-    // printf("element is deleted : %d\n",dequeue(&ptr));
-    // displayQueue(&ptr);
+    ptr.displayQueue();
+    ptr.enqueue(10);
+    ptr.enqueue(20);
+    ptr.enqueue(30);
+    ptr.enqueue(40);
+    ptr.enqueue(50);
+    ptr.enqueue(60);
+    ptr.displayQueue();
+
+    cout<<"no of elements in queue is : "<<ptr.count()<<endl;
+    printf("element is deleted : %d\n",ptr.dequeue());
+    printf("element is deleted : %d\n",ptr.dequeue());
+    printf("element is deleted : %d\n",ptr.dequeue());
+    printf("element is deleted : %d\n",ptr.dequeue());
+    ptr.displayQueue();
     // cout<<"no of elements in queue is : "<<count(&ptr)<<endl;
     // cout<<"Front element is :"<<front(&ptr)<<endl;
     // cout<<"Last element is :"<<rear(&ptr)<<endl;
