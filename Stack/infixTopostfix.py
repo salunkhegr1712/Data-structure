@@ -1,11 +1,6 @@
-from ast import operator
-from hashlib import algorithms_available
-from inspect import Parameter
-from logging import PercentStyle
-from queue import Empty
-from xml.dom.minidom import Element
+import operator
 
-
+ops={"+":operator.add,"-":operator.sub,"*":operator.mul,"/":operator.truediv,"^":operator.pow}
 # this function will return the precedense of character you gave inside iT as a Parameter 
 def precedence(c):
     if (c == '^'):
@@ -16,6 +11,7 @@ def precedence(c):
         return 1
     else:
         return -1
+
 
 # this will peek and see the value at the top of the array and return it 
 def stackTop(l):
@@ -31,7 +27,7 @@ def infixToPostfix(cha):
     l=[]
     # so as postfix expression gave answer in one scan so we will perform same algo 
     for i in range(len(cha)):
-        if(cha[i].isalpha()==True):
+        if(cha[i].isnumeric()==True):
             d=d+cha[i]
         elif(cha[i]=="("):
             l.append("(")
@@ -63,9 +59,36 @@ def infixToPostfix(cha):
     return d
 
 
+def postfix_evalution(cha):
+    l=[]
+    answer=0
+    print(cha)
+    for i in range(len(cha)):
+        if(cha[i].isnumeric()==True):
+            l.append(cha[i])
+            # print(l)
+        elif(cha[i]=="+" or cha[i]=="-" or cha[i]=="/" or cha[i]=="*"):
+            b=int(l.pop())
+            a=int(l.pop())
+            answer=ops[cha[i]](a,b)
+            l.append(answer)
+            # print(l)
+        elif(cha[i]=="^"):
+            b=int(l.pop())
+            a=int(l.pop())
+            answer=ops[cha[i]](b,a)
+            l.append(answer)
+            # print(l)
+    return answer
+
+
 def main():
-    a="a+b*(c^d-e)^(f+g*h)-i"
-    print(infixToPostfix(a))
+    # a="a+b*(c^d-e)^(f+g*h)-i"
+    a="3*5+6/2-4"
+    print(postfix_evalution(infixToPostfix(a)))
+    # print(infixToPostfix(a))
+    # a=ops["+"](10,20)
+    # print(a)
 
 main()
 
