@@ -25,7 +25,6 @@ int main()
     insertion(root,21);
     insertion(root,12);
     // cout<<"root is : "<<root->data<<endl;
-    
     // cout<<"leftchild is : "<<root.lchild->data<<endl;
     // cout<<"rightchild is : "<<root.rchild->data<<endl;
     inorder(root);
@@ -37,6 +36,9 @@ int main()
     // printf("height of tree is : %d \n",height(root));
     cout<<endl;
     printLevelwise(root);
+    // printf("total count of the nodes in tree is : %d",count);
+    // search(root,44);
+    cout<<endl<<iterative_search(root,411);
     // cout<<"height of node 40 is :"<<levelOfNode(root,root->rchild->lchild)<<endl;
     return 0;
 }

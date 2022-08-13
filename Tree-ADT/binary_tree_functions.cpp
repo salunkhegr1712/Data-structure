@@ -3,7 +3,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 using namespace std;
-
+// declaring a global variable 
+int count =0;
 // declaring main structure for which we are going to write the functions 
 struct node{
     int data;
@@ -13,6 +14,7 @@ struct node{
 
 // a function which create a new structure with dynamic initialisation 
 node* initialise(int val){
+    count=count+1;
     struct node*ptr=(node*)malloc(sizeof(struct node));
     ptr->data=val;
     ptr->lchild=NULL;
@@ -100,9 +102,21 @@ void insertion(struct node*ptr,int val){
         }
 }
 
+// function to print the height of the tree 
+// it will give overall height of the tree 
+int height(struct node*n){
+    
+    if (n==NULL)
+    {
+        /* code */
+        return 0;
+    }
+    return max(height(n->lchild)+1,height(n->rchild)+1);
+    
+}
+
 // basic block which we are going to use inside the printlevelwise function 
 void plw(struct node*ptr,int lvl,int tg){
-    int static count;
     if (ptr==NULL)
     {
         /* code */
@@ -133,17 +147,58 @@ void printLevelwise(struct node*root){
     
 }
 
-// function to print the height of the tree 
-// it will give overall height of the tree 
-int height(struct node*n){
-    
-    if (n==NULL)
+void search(struct node*root,int val){
+    int static v;
+    if (root==NULL)
     {
         /* code */
-        return 0;
+        cout<<"element is not there in tree"<<endl;
     }
-    return max(height(n->lchild)+1,height(n->rchild)+1);
+    
+    else if(root->data==val){
+        cout<<"element found in "<<v<<" iterations"<<endl;
+    }
+    else if (val >root->data)
+    {
+        /* code */
+        v++;
+        search(root->rchild,val);
+    }
+    else{
+        v++;
+        search(root->lchild,val);
+    }
     
 }
 
-
+int iterative_search(struct node*root,int val){
+    int static v;
+    if (root==NULL)
+    {
+        /* code */
+        // cout<<"element is not there in tree"<<endl;
+        return -1;
+    }
+    else{
+        while (root!=NULL)
+        {
+            /* code */
+            if (root->data==val)
+            {
+                /* code */
+                return 1;
+            }
+            else if (root->data>val)
+            {
+                /* code */
+                root=root->lchild;
+            }
+            else{
+                root=root->rchild;
+            }
+            
+        }
+        return -1;
+        
+    }
+}
