@@ -28,12 +28,15 @@ int main()
     
     // cout<<"leftchild is : "<<root.lchild->data<<endl;
     // cout<<"rightchild is : "<<root.rchild->data<<endl;
-    // inorder(root);
+    inorder(root);
     // cout<<endl;
     // postorder(root);
     // cout<<endl;
     // preorder(root);
     // levelwise_traversal(root);
-    printf("height of tree is : %d \n",height(root));
+    // printf("height of tree is : %d \n",height(root));
+    cout<<endl;
+    printLevelwise(root);
+    // cout<<"height of node 40 is :"<<levelOfNode(root,root->rchild->lchild)<<endl;
     return 0;
 }

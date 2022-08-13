@@ -1,15 +1,17 @@
+// importing all basic things from iostream object and predefined header files 
 #include<iostream>
 #include<stdio.h>
 #include<stdlib.h>
-
 using namespace std;
 
+// declaring main structure for which we are going to write the functions 
 struct node{
     int data;
     struct node*lchild;
     struct node*rchild;
 };
 
+// a function which create a new structure with dynamic initialisation 
 node* initialise(int val){
     struct node*ptr=(node*)malloc(sizeof(struct node));
     ptr->data=val;
@@ -18,6 +20,8 @@ node* initialise(int val){
     return ptr; 
 }
 
+// one of the traversal method to traverse tree 
+// left-subtree  --> root --> right-subtree 
 void inorder(struct node*ptr){
     if (ptr==NULL)
     {
@@ -29,6 +33,8 @@ void inorder(struct node*ptr){
     inorder(ptr->rchild);
 }
 
+// preorder traversal method 
+// left-subtree --> right-subtree  --> root
 void preorder(struct node*ptr){
     if (ptr==NULL)
     {
@@ -42,6 +48,8 @@ void preorder(struct node*ptr){
     
 }
 
+// postorder traversal method 
+// left-subtree --> right-subtree  --> root
 void postorder(struct node*ptr){
     if (ptr==NULL)
     {
@@ -52,13 +60,16 @@ void postorder(struct node*ptr){
     postorder(ptr->rchild);
     printf("%d  ",ptr->data);
 }
+
+// function to insert element inside the tree 
 void insertion(struct node*ptr,int val){
+    // if value already there in tree dont insert just skip the process
     if (val==ptr->data)
     {
         /* code */
         return;
     }
-    
+    // go toward right subtree if value is greater than that of root
     else if (val > ptr->data && ptr->rchild==NULL)
     {
         /* code */
@@ -66,6 +77,7 @@ void insertion(struct node*ptr,int val){
         ptr->rchild=c;
 
     }
+    // go toward left  subtree if value is less than that of root
     else if (val < ptr->data && ptr->lchild==NULL)
     {
         /* code */
@@ -73,6 +85,8 @@ void insertion(struct node*ptr,int val){
         ptr->lchild=c;
   
     }
+    // if left and right childs both are preoccupied then just go to left 
+    // or right subtree according to value of insertion 
     else{
         if (val > ptr->data)
         {
@@ -86,20 +100,41 @@ void insertion(struct node*ptr,int val){
         }
 }
 
-void levelwise_traversal(struct node*ptr){
-    int static i=0;
-    printf("elements at level %d is : \n");
-    cout<<ptr->data;
-    node*a=ptr->lchild,*b=ptr->rchild;
-    while (a!=NULL || b!=NULL)
+// basic block which we are going to use inside the printlevelwise function 
+void plw(struct node*ptr,int lvl,int tg){
+    int static count;
+    if (ptr==NULL)
     {
         /* code */
-        printf("elements at level %d is : \n");
-        cout<<a->data;
-        cout<<b->data;
-    }      
+        return;
+    }
+    if(tg==lvl){
+        
+        cout<<ptr->data<<"  ";
+        return;
+    }
+    plw(ptr->lchild,lvl+1,tg);
+    plw(ptr->rchild,lvl+1,tg);
+    
 }
 
+// this is also a way of traversing the tree where we traverse the tree according
+// to level of nodes 
+
+void printLevelwise(struct node*root){
+    int j=height(root);
+    for (int i = 0; i < j; i++)
+    {
+        /* code */
+        printf("\nelements at level %d is/are : ",i);
+        plw(root,0,i);
+        cout<<endl;
+    }
+    
+}
+
+// function to print the height of the tree 
+// it will give overall height of the tree 
 int height(struct node*n){
     
     if (n==NULL)
@@ -110,3 +145,5 @@ int height(struct node*n){
     return max(height(n->lchild)+1,height(n->rchild)+1);
     
 }
+
+
