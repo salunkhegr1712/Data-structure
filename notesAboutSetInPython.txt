@@ -1,0 +1,14 @@
+ghansham@Sham:~$ python 
+Python 3.8.10 (default, Jun 22 2022, 20:18:18) 
+[GCC 9.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> a=set()
+>>> a.add(1)
+>>> a
+{1}
+>>> a.add(1)
+>>> a
+{1}
+>>> # you cant add same element inside the set is that element is already there
+>>> #so you can use the set where you dont want to be have multiple copies of same elements or 
+>>> # you want to make unique set of the values
