@@ -100,8 +100,8 @@ def postfix_evalution(cha):
 
 def main():
     # a="a+b*(c^d-e)^(f+g*h)-i"
-    a="3*5+6/2-4"
-    print(postfix_evalution(infixToPostfix("8 2 3 ^ / 2 3* + 5 1*-")))
+    a="a*b+((c-d)*p-q*s)/r+m/(n*x)"
+    print(infixToPostfix(a))
     # print(infixToPostfix("1+(2 * 3) - (4^ (5^ 6))"))
     # print(infixToPostfix(a))
     # a=ops["+"](10,20)
