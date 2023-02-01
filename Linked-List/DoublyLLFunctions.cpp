@@ -9,6 +9,8 @@ struct node
     struct node*prev;
 
 };
+// structure
+
 
 struct node* initialise(struct node*ptr,int data){
     ptr=(struct node*)malloc(sizeof(struct node));
